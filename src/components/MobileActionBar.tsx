@@ -53,7 +53,8 @@ export default function MobileActionBar({
             onClick={onSave}
             disabled={saveButtonProps?.disabled}
             title={saveButtonProps?.title ?? saveLabel}
-            className="h-11 w-full rounded-xl font-medium text-sm flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+            className={`h-11 w-full rounded-xl font-medium text-sm flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white transition-colors disabled:opacity-70 disabled:cursor-not-allowed ${saveButtonProps?.className ?? ""}`}
+            style={saveButtonProps?.style}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

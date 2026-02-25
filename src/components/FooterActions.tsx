@@ -13,7 +13,7 @@ type FooterActionsProps = {
   printButtonProps?: Partial<ButtonHTMLAttributes<HTMLButtonElement>>;
   saveButtonProps?: Partial<ButtonHTMLAttributes<HTMLButtonElement>>;
   /** Yazdır butonu yerine gösterilecek buton (örn. Yeni Hesapla). Verilirse Yazdır gösterilmez. */
-  replacePrintWith?: { label: string; onClick: () => void };
+  replacePrintWith?: { label: string; onClick: () => void; disabled?: boolean };
   previewButton?: {
     title: string;
     copyTargetId: string;

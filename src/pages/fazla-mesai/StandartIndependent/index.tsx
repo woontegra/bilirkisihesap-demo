@@ -692,6 +692,9 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
   
   // YENİ RAPOR SİSTEMİ: State
   const [showNewFMReportModal, setShowNewFMReportModal] = useState(false);
+  // DEMO: Modal shown when user clicks Önizleme (no real report)
+  const [showDemoModal, setShowDemoModal] = useState(false);
+  const [calculationSent, setCalculationSent] = useState(false);
   const [previewText, setPreviewText] = useState<string>("");
   const [previewPayload, setPreviewPayload] = useState<{ type: "davaci"|"davali"|"tanik"; entry: string; exit: string } | null>(null);
   const [previewTouched, setPreviewTouched] = useState<boolean>(false);
@@ -1183,6 +1186,18 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
       }
     } catch {}
   }, [location.search]);
+
+  // DEMO: Prevent copy and context menu (right-click) on document
+  useEffect(() => {
+    const preventCopy = (e: ClipboardEvent) => e.preventDefault();
+    const preventContextMenu = (e: MouseEvent) => e.preventDefault();
+    document.addEventListener("copy", preventCopy);
+    document.addEventListener("contextmenu", preventContextMenu);
+    return () => {
+      document.removeEventListener("copy", preventCopy);
+      document.removeEventListener("contextmenu", preventContextMenu);
+    };
+  }, []);
   
   // API servis fonksiyonları
   const loadCalculation = async (loadId: string) => {
@@ -2260,8 +2275,26 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
       pageKey="fazla-mesai"
       noBackgroundColor={true}
     >
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" style={{ paddingBottom: '80px' }}>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
+        {/* DEMO: Full-page watermark - fixed center, rotated, above content (pointer-events: none so clicks pass through) */}
+        <div
+          className="fixed pointer-events-none"
+          style={{
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%) rotate(-30deg)",
+            zIndex: 50,
+          }}
+          aria-hidden="true"
+        >
+          <span
+            className="text-gray-900 dark:text-gray-100 whitespace-nowrap"
+            style={{ fontSize: "10vw", fontWeight: 800, opacity: 0.05 }}
+          >
+            DENEME SÜRÜMÜ
+          </span>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 select-none relative z-[2]" style={{ paddingBottom: '80px' }}>
           <div className="mb-8 flex justify-end">
             {videoLink && (
               <Button
@@ -2369,6 +2402,14 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
                         const value = e.target.value;
                         logger.input('davaci.in (Giriş Saati)', value);
                         setDavaci((p)=>({...p,in:value}));
+                        if (!calculationSent) {
+                          fetch("http://localhost:4000/demo-track", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ event: "calculation" }),
+                          }).catch(() => {});
+                          setCalculationSent(true);
+                        }
                       }}
                       readOnly={isReadOnly} 
                     />
@@ -2383,6 +2424,14 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
                         const value = e.target.value;
                         logger.input('davaci.out (Çıkış Saati)', value);
                         setDavaci((p)=>({...p,out:value}));
+                        if (!calculationSent) {
+                          fetch("http://localhost:4000/demo-track", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ event: "calculation" }),
+                          }).catch(() => {});
+                          setCalculationSent(true);
+                        }
                       }}
                       readOnly={isReadOnly} 
                     />
@@ -2687,7 +2736,7 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
               </div>
             )}
 
-            <div className="mt-2 mb-2 overflow-x-auto w-full" style={{ maxWidth: '100%' }}>
+            <div className="mt-2 mb-2 overflow-x-auto w-full select-none" style={{ maxWidth: '100%' }}>
               <table className="w-full text-xs border-[0.5px] border-gray-300" style={{ borderCollapse: 'collapse', tableLayout: 'fixed', width: '100%', lineHeight: '1.2' }}>
                 <colgroup>
                   <col style={{ width: '22%' }} />
@@ -2899,8 +2948,8 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
             
           </div>
 
-          {/* İki Ayrı Kart: Solda Brütten Nete, Sağda Mahsuplaşma */}
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* İki Ayrı Kart: Solda Brütten Nete, Sağda Mahsuplaşma - DEMO: no selection */}
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 select-none">
             {/* Kart 1: Brütten Nete Çevir */}
             <div className="rounded-2xl border border-gray-200/60 dark:border-gray-800/60 bg-white dark:bg-gray-900 p-4 md:p-6 shadow-sm hover:shadow-md transition-all duration-200 md:col-span-2">
               <h3 className="text-lg font-bold text-yellow-900 dark:text-yellow-400 mb-4 flex items-center gap-2">
@@ -3091,6 +3140,62 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
         />
       )}
 
+      {/* DEMO: Centered modal when user clicks Önizleme - no real report */}
+      {showDemoModal && createPortal(
+        <div
+          className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/40"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="demo-modal-title"
+          onClick={() => setShowDemoModal(false)}
+        >
+          <div
+            className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 mx-4 max-w-md text-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 id="demo-modal-title" className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+              DENEME SÜRÜMÜ
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-6 whitespace-pre-line">
+              Bu deneme sürümüdür.
+              {"\n"}40'tan fazla tüm hesaplamalara erişim için lisans gereklidir.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Button
+                type="button"
+                onClick={async () => {
+                  await fetch("http://localhost:4000/demo-track", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ event: "demo_click" }),
+                  }).catch(() => {});
+                  window.open("https://bilirkisihesap.com", "_blank");
+                }}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium"
+              >
+                Demo Talep Et
+              </Button>
+              <Button
+                type="button"
+                onClick={async () => {
+                  await fetch("http://localhost:4000/demo-track", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ event: "subscribe_click" }),
+                  }).catch(() => {});
+                  window.open("https://bilirkisihesap.com/satin-al", "_blank");
+                }}
+                variant="outline"
+                className="border-2 border-purple-600 text-purple-600 hover:bg-purple-50 dark:border-purple-400 dark:text-purple-400 dark:hover:bg-purple-900/30 px-4 py-2 rounded-lg font-medium"
+              >
+                Abone Ol
+              </Button>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
+
       {/* Rapor içeriği PDF için her zaman DOM'da (gizli) */}
       {USE_NEW_FAZLA_MESAI_REPORT && (
         <div style={{ position: "absolute", left: "-9999px", top: 0, visibility: "hidden", width: "16cm", zIndex: -1 }} aria-hidden="true">
@@ -3100,46 +3205,29 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
 
       <FooterActions
         pageKey="fazla-mesai"
-        replacePrintWith={{ label: "Yeni Hesapla", onClick: handleNewCalculation }}
+        replacePrintWith={{ label: "Yeni Hesapla", onClick: handleNewCalculation, disabled: true }}
         onSave={save}
-        saveButtonProps={{ disabled: isSaving, title: isSaving ? "Kaydediliyor..." : undefined }}
-        saveLabel={isSaving ? "Kaydediliyor..." : "Kaydet"}
+        saveButtonProps={{
+          disabled: true,
+          title: "Demo sürümünde devre dışı",
+          className: "!opacity-50 cursor-not-allowed",
+          style: { opacity: 0.5, cursor: "not-allowed" },
+        }}
+        saveLabel="Kaydet"
         previewButton={{
           title: `${resolvedTitle} Rapor`,
           copyTargetId: "fazla-mesai-word-copy",
           hideWordDownload: true,
-          renderContent: () => (
-            <div style={{ background: "white", padding: 24 }}>
-              <style>{`
-                .report-section-copy { margin-bottom: 20px; }
-                .report-section-copy .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-                .report-section-copy .section-title { font-weight: 600; font-size: 13px; }
-                .report-section-copy .copy-icon-btn { background: transparent; border: none; cursor: pointer; opacity: 0.7; padding: 4px; }
-                .report-section-copy .copy-icon-btn:hover { opacity: 1; }
-                #fazla-mesai-word-copy table { border-collapse: collapse; width: 100%; margin-bottom: 12px; border: 1px solid #999; font-size: 9px; }
-                #fazla-mesai-word-copy td { border: 1px solid #999; padding: 4px 6px; }
-              `}</style>
-              <div id="fazla-mesai-word-copy">
-                {wordTableSections.map((sec) => (
-                  <div key={sec.id} className="report-section-copy report-section" data-section={sec.id}>
-                    <div className="section-header">
-                      <span className="section-title">{sec.title}</span>
-                      <button
-                        type="button"
-                        className="copy-icon-btn"
-                        onClick={() => copySectionForWord(sec.id)}
-                        title="Word'e kopyala"
-                      >
-                        <Copy className="w-4 h-4" />
-                      </button>
-                    </div>
-                    <div className="section-content" dangerouslySetInnerHTML={{ __html: sec.html }} />
-                  </div>
-                ))}
-              </div>
-            </div>
-          ),
-          onPdf: () => downloadPdfFromDOM(`${resolvedTitle} Rapor`, "report-content"),
+          onButtonClick: async () => {
+            await fetch("http://localhost:4000/demo-track", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ event: "preview_click" }),
+            }).catch(() => {});
+            setShowDemoModal(true);
+          },
+          renderContent: () => <div id="fazla-mesai-word-copy" />,
+          onPdf: () => {},
         }}
       />
     </div>

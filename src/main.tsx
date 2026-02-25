@@ -21,14 +21,8 @@ if (import.meta.env.PROD) {
 // Initialize global error handler
 setupGlobalErrorHandler();
 
-// Initialize theme before render
-const savedTheme = localStorage.getItem("theme") || "light";
-const root = document.documentElement;
-if (savedTheme === "dark") {
-  root.classList.add("dark");
-} else {
-  root.classList.remove("dark");
-}
+// DEMO: Force light mode - no dark theme, no localStorage/system detection
+document.documentElement.classList.remove("dark");
 
 // Ensure tenant_id is set to 1 if not exists (tenant 1 is always admin)
 if (!localStorage.getItem("tenant_id")) {

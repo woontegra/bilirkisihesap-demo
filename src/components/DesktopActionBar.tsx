@@ -22,7 +22,7 @@ type DesktopActionBarProps = {
   };
   onPrintClick: () => void;
   /** Yazdır butonu yerine gösterilecek buton (örn. Yeni Hesapla). Verilirse Yazdır gösterilmez. */
-  replacePrintWith?: { label: string; onClick: () => void };
+  replacePrintWith?: { label: string; onClick: () => void; disabled?: boolean };
 };
 
 const btnBase = "h-9 rounded-xl font-medium text-sm flex items-center justify-center gap-2 px-4 transition-colors disabled:opacity-70 disabled:cursor-not-allowed border border-transparent dark:border-gray-500";
@@ -65,8 +65,14 @@ export default function DesktopActionBar({
           <button
             type="button"
             onClick={replacePrintWith.onClick}
+            disabled={replacePrintWith.disabled}
             title={replacePrintWith.label}
-            className={clsx(btnBase, "bg-blue-600 hover:bg-blue-700 text-white")}
+            className={clsx(
+              btnBase,
+              "bg-blue-600 hover:bg-blue-700 text-white",
+              replacePrintWith.disabled && "opacity-50 cursor-not-allowed"
+            )}
+            style={replacePrintWith.disabled ? { opacity: 0.5, cursor: "not-allowed" } : undefined}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
