@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS hesaplamalar (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  hesaplama_turu VARCHAR(100) NOT NULL,
+  tarih DATETIME NOT NULL,
+  toplam_fazla_mesai DECIMAL(10,2) DEFAULT 0,
+  ayrintilar JSON,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);

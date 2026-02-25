@@ -1,0 +1,11 @@
+/* Lokal kopya – sadece bu sayfada kullanılan .soft-card */
+.soft-card {
+  background: #ffffff !important;
+  border-radius: 14px !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.dark .soft-card {
+  background: #1f2937 !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+}

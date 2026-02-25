@@ -1,0 +1,245 @@
+.soft-card {
+  background: #ffffff !important;
+  border-radius: 14px !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04) !important;
+}
+
+html.dark .soft-card {
+  background: #1f2937 !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2) !important;
+}
+
+/* Padding override - eğer inline style ile padding verilmişse, onu kullan */
+.soft-card[style*="padding"] {
+  /* Inline style padding'i koru */
+}
+
+/* Tüm animasyonlar ve hover efektleri kaldırıldı - modal titreme sorununu çözmek için */
+
+input, select {
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  border-radius: 8px !important;
+}
+
+/* ========== MODAL GLOBAL STYLES ========== */
+/* Modal overlay - tam ekran kaplayan arka plan */
+.modal-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+  z-index: 9999 !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Modal content - viewport ortasına sabitlenmiş */
+.modal-content {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 10000 !important;
+  margin: 0 !important;
+  animation: none !important;
+  transition: none !important;
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+}
+
+/* Modal açıkken body scroll kapalı */
+body.modal-open {
+  overflow: hidden !important;
+}
+
+/* Modal açıkken parent elementlerin overflow'unu düzelt */
+body.modal-open .soft-card,
+body.modal-open .page-background {
+  overflow: visible !important;
+}
+
+/* Modal parent'larında relative pozisyon olmasın */
+.modal-parent {
+  position: static !important;
+}
+
+/* Notlar paneli için özel scrollbar */
+.notes-panel {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.2) transparent;
+}
+
+.notes-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notes-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.notes-panel::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 3px;
+}
+
+.notes-panel::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0,0,0,0.3);
+}
+
+/* CardContent padding override - Card bileşenleri için */
+.soft-card[class*="Card"] > div[class*="p-6"] {
+  padding: 20px !important;
+}
+
+/* Sayfa arka planı için */
+.page-background {
+  background: #f6f8fc !important;
+  /* padding-bottom kaldırıldı - Layout component'inde dinamik olarak ekleniyor */
+}
+
+html.dark .page-background {
+  background: #111827 !important;
+}
+
+/* FooterActions olan sayfalar için ekstra alt boşluk */
+body {
+  padding-bottom: 0;
+}
+
+/* Mobil responsive düzeltmeleri */
+@media (max-width: 768px) {
+  /* Tüm container'ların taşmaması için */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Kartların mobilde taşmaması için */
+  .soft-card {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  
+  /* Input ve select alanlarının mobilde taşmaması için */
+  input, select, textarea {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+  }
+  
+  /* Fixed width'li elementlerin responsive olması için */
+  [style*="width"] {
+    max-width: 100% !important;
+  }
+  
+  /* Özellikle 200px gibi fixed width'ler için */
+  [style*="width: 200"] {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Tabloların mobilde yatay scroll yapabilmesi için */
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* Tablo wrapper'ları için */
+  .table-wrapper, [id*="calc-table"], [id*="table"] {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  /* Grid'lerin mobilde tek sütun olması için */
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  /* Uzun metinlerin taşmaması için */
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Padding'lerin mobilde küçültülmesi */
+  .page-background {
+    padding: 0.5rem !important;
+    /* padding-bottom kaldırıldı - Layout component'inde dinamik olarak ekleniyor */
+  }
+  
+  /* Tüm div'lerin taşmaması için */
+  div {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Form container'ları için */
+  form, .space-y-2, .space-y-3, .space-y-4 {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Butonların mobilde taşmaması için */
+  button {
+    max-width: 100%;
+    white-space: normal;
+  }
+  
+  /* Flex container'ların mobilde wrap yapması için */
+  .flex {
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+  
+  /* Gap'lerin mobilde küçültülmesi */
+  .gap-6 {
+    gap: 1rem !important;
+  }
+  
+  .gap-4 {
+    gap: 0.75rem !important;
+  }
+  
+  .gap-3 {
+    gap: 0.5rem !important;
+  }
+  
+  /* Padding'lerin mobilde küçültülmesi */
+  .p-6, .p-4 {
+    padding: 1rem !important;
+  }
+  
+  .px-6, .px-4 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .py-6, .py-4 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+}
+
+/* ========== SATIR ÇOĞALTMA İKONU ========== */
+.row-add-icon {
+  display: inline-block;
+  cursor: pointer;
+  color: #666;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1;
+  padding: 2px 6px;
+  user-select: none;
+}
+
+.row-add-icon:hover {
+  color: #333;
+}
+

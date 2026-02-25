@@ -1,0 +1,97 @@
+/**
+ * RESPONSIVE SHELL CSS
+ * Minimal ve odaklanmış kurallar
+ * 
+ * BREAKPOINT: 1024px (lg)
+ * - <1024px: Mobile/Tablet
+ * - ≥1024px: Desktop
+ */
+
+/* ============================================
+   PREVENT HORIZONTAL OVERFLOW
+   ============================================ */
+
+html,
+body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+/* ============================================
+   SIDEBAR SCROLL
+   ============================================ */
+
+aside[data-sidebar] {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar for sidebar */
+aside[data-sidebar]::-webkit-scrollbar {
+  width: 6px;
+}
+
+aside[data-sidebar]::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+aside[data-sidebar]::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+aside[data-sidebar]::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode scrollbar */
+.dark aside[data-sidebar]::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dark aside[data-sidebar]::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================
+   CONTENT AREA SAFEGUARDS
+   ============================================ */
+
+main > div {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+main > div * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   HAMBURGER BUTTON TOUCH TARGET
+   ============================================ */
+
+button[data-hamburger] {
+  min-width: 40px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   BACKDROP ANIMATION
+   ============================================ */
+
+.fixed.bg-black\/50 {
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

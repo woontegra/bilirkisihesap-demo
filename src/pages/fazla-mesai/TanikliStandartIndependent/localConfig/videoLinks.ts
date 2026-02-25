@@ -1,0 +1,67 @@
+/**
+ * LOCAL COPY - DO NOT MODIFY
+ * This file is frozen as part of Bilirkisi1Independent page isolation
+ */
+
+export const VIDEO_LINKS: Record<string, string> = {
+  "kidem-30isci": "",
+  "kidem-gemi": "",
+  "kidem-basin": "",
+  "kidem-mevsimlik": "",
+  "kidem-part-time": "",
+  "kidem-kismi-sureli": "",
+  "kidem-belirli-sureli": "",
+  "kidem-borclar": "",
+  "kidem-parca-basi": "",
+  "kidem-toplu-sozlesme": "",
+  "ihbar-30isci": "",
+  "ihbar-gemi": "",
+  "ihbar-basin": "",
+  "ihbar-mevsim": "",
+  "ihbar-kismi": "",
+  "ihbar-belirli": "",
+  "ihbar-borclar": "",
+  "ihbar-parca": "",
+  "ihbar-part": "",
+  "ihbar-toplu": "",
+  "yillik-standart": "",
+  "yillik-gemi": "",
+  "yillik-basin": "",
+  "yillik-basin-gunluk-olmayan": "",
+  "yillik-mevsimlik": "",
+  "yillik-kismi": "",
+  "yillik-belirli": "",
+  "yillik-borclar": "",
+  "hafta-standard": "",
+  "hafta-gemi-adami": "",
+  "hafta-basin-is": "",
+  "hafta-toplu-sozlesme": "",
+  "fazla-standart": "",
+  "fazla-bilirkisi-1": "",
+  "fazla-bilirkisi-2": "",
+  "fazla-yeralti-isci": "",
+  "fazla-vardiya12": "",
+  "fazla-vardiya24": "",
+  "fazla-vardiya48": "",
+  "fazla-gemi": "",
+  "fazla-gemi-7-24": "",
+  "fazla-ev": "",
+  "fazla-surelerle-calisma": "",
+  "fazla-basin-is": "",
+  "bakiye-ucret": "",
+  "davaci-ucreti": "",
+  "is-arama-izni": "",
+  "ubgt": "",
+  "ucret-alacagi": "",
+  "prim-alacagi": "",
+  "bosta-gecen-sure": "",
+  "haksiz-fesih": "",
+  "kotu-niyet": "",
+  "ayrimcilik": "",
+  "ise-almama": "",
+};
+
+export function getVideoLink(pageKey: string): string | undefined {
+  const link = VIDEO_LINKS[pageKey];
+  return link && link.trim() !== "" ? link : undefined;
+}

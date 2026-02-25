@@ -1,0 +1,48 @@
+.soft-card {
+  background: #ffffff !important;
+  border-radius: 14px !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04) !important;
+}
+
+html.dark .soft-card {
+  background: #1f2937 !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2) !important;
+}
+
+input, select {
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  border-radius: 8px !important;
+}
+
+.modal-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+  z-index: 9999 !important;
+}
+
+.modal-content {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 10000 !important;
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+}
+
+body.modal-open {
+  overflow: hidden !important;
+}
+
+.page-background {
+  background: #f6f8fc !important;
+}
+
+html.dark .page-background {
+  background: #111827 !important;
+}
+
+.notes-content {
+  word-wrap: break-word;
+}

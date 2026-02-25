@@ -1,0 +1,54 @@
+.soft-card {
+  background: #ffffff !important;
+  border-radius: 14px !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04) !important;
+  padding: 20px !important;
+  transition: 0.25s ease;
+}
+
+.soft-card:hover {
+  transform: translateY(-3px);
+}
+
+.fade-section {
+  animation: fadeIn 0.4s ease-out;
+}
+
+input, select {
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  border-radius: 8px !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Notlar paneli için özel scrollbar */
+.notes-panel {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.2) transparent;
+}
+
+.notes-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notes-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.notes-panel::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 3px;
+}
+
+.notes-panel::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0,0,0,0.3);
+}
+
+/* CardContent padding override - Card bileşenleri için */
+.soft-card[class*="Card"] > div[class*="p-6"] {
+  padding: 20px !important;
+}
+

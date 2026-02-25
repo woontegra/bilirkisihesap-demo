@@ -1,0 +1,579 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   LAYOUT MASTER CSS - GLOBAL GÜVENLİK KURALLARI
+   Bu kurallar App.tsx layout otoritesini destekler
+   ============================================ */
+
+/* GLOBAL BOX-SIZING - Zorunlu */
+*, *::before, *::after {
+  box-sizing: border-box !important;
+}
+
+/* PREVENT HORIZONTAL OVERFLOW - Zorunlu */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  position: relative;
+}
+
+/* MODERN FONT - İnce, SaaS hissi */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* ROOT ELEMENT OVERFLOW CONTROL */
+#root {
+  overflow-x: hidden;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+/* ALL CONTAINERS MAX-WIDTH */
+.container,
+.card,
+.panel,
+[class*="Card"],
+[class*="grid"] {
+  max-width: 100%;
+}
+
+/* ============================================
+   RESPONSIVE LAYOUT KONTROL
+   Mobile + Tablet (<1024px): Full width, sidebar overlay
+   Desktop (≥1024px): Sidebar offset active
+   
+   NOT: Tailwind'in lg: breakpoint'i (1024px) bu davranışı 
+   otomatik sağlar. Bu kural ekstra güvenlik için.
+   ============================================ */
+
+@media (max-width: 1023px) {
+  /* MOBİL VE TABLET (<1024px): Content full-width */
+  /* Sidebar overlay olarak çalışır (fixed position) */
+  /* Content'e margin-left offset uygulanmaz */
+}
+
+/* MOBİL GRİD - Kartlar tek kolon */
+@media (max-width: 767px) {
+  .grid-cards-mobile {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Hide scrollbar for webkit browsers */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Notlar bölümü – bilirkişi talebi: Times New Roman, 10 punto */
+.notes-content {
+  font-family: 'Times New Roman', serif;
+  font-size: 10pt;
+}
+
+/* FORM STANDARDIZATION */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+}
+
+.form-group {
+  flex: 1 1 280px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  min-width: 0;
+}
+
+/* TABLE WRAPPER - Mobil yatay kaydırma */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  margin: 0;
+  min-width: 0;
+}
+
+.table-wrapper table {
+  min-width: 100%;
+  border-collapse: collapse;
+}
+
+/* CALC TABLE WRAPPER */
+.calc-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.calc-table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+
+/* ============================================
+   HESAPLAMA CETVELLERİ - TABULAR NUMS
+   Tarih, gün sayısı, tutar kolonlarında hizalama
+   SADECE main content içindeki tablolar
+   ============================================ */
+
+/* Hesaplama tablolarında tabular nums - TÜM TABLOLAR */
+table,
+tbody,
+thead {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Tablo hücreleri - temel ayarlar - TÜM TABLOLAR */
+table td,
+table th {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  line-height: 1.4;
+  vertical-align: middle;
+}
+
+/* Tarih sütunu - SOLA DAYALI + TABULAR NUMS - TÜM TABLOLAR */
+table td:first-child,
+table th:first-child {
+  font-variant-numeric: tabular-nums !important;
+  font-feature-settings: "tnum" 1 !important;
+  white-space: nowrap !important;
+  text-align: left !important;
+}
+
+/* Tarih sütunu child elementleri */
+table td:first-child *,
+table th:first-child * {
+  font-variant-numeric: inherit !important;
+  font-feature-settings: inherit !important;
+  text-align: inherit !important;
+}
+
+/* Sayı içeren hücreler (sağ/orta hizalı) - TÜM TABLOLAR */
+table td[class*="text-right"],
+table th[class*="text-right"],
+table td[class*="text-center"],
+table th[class*="text-center"] {
+  font-variant-numeric: tabular-nums !important;
+  font-feature-settings: "tnum" 1 !important;
+  white-space: nowrap !important;
+}
+
+table td[class*="text-right"] *,
+table th[class*="text-right"] *,
+table td[class*="text-center"] *,
+table th[class*="text-center"] * {
+  font-variant-numeric: inherit !important;
+  font-feature-settings: inherit !important;
+}
+
+/* Tarih input'ları - SOLA DAYALI + TABULAR NUMS - TÜM TABLOLAR */
+table input[type="date"] {
+  font-variant-numeric: tabular-nums !important;
+  font-feature-settings: "tnum" 1 !important;
+  text-align: left !important;
+}
+
+/* Sayı input'ları için TABULAR NUMS - TÜM TABLOLAR */
+table input[type="number"] {
+  font-variant-numeric: tabular-nums !important;
+  font-feature-settings: "tnum" 1 !important;
+  text-align: right !important;
+}
+
+/* INPUT STANDARDIZATION */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   CONTENT CONTAINER CONTRACT
+   Tüm sayfa içerikleri bu kuralları inherit eder
+   ============================================ */
+.layout-content-container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   CALCULATION PAGE CONTAINER - LAYOUT POLISH
+   Tüm hesaplama sayfaları için merkezi layout
+   Büyük ekranlarda optimize edilmiş görünüm
+   ============================================ */
+.calculation-page-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+/* Bölümler arası spacing artışı */
+.calculation-page-container.space-y-6 > * + *,
+.calculation-page-container.space-y-8 > * + * {
+  margin-top: 2rem; /* 32px - space-y-8 */
+}
+
+/* Çok büyük ekranlarda optik denge için sol padding */
+@media (min-width: 1536px) {
+  .calculation-page-container {
+    padding-left: 2rem; /* 32px */
+  }
+}
+
+/* RESPONSIVE AT 1366px - Küçük Laptop Optimizasyonu */
+@media (max-width: 1366px) {
+  /* Card padding sıkılaştır */
+  [class*="Card"] {
+    padding: 12px !important;
+  }
+  
+  /* Form spacing kompakt yap */
+  .space-y-6 > * + * {
+    margin-top: 16px !important;
+  }
+  
+  .gap-6 {
+    gap: 12px !important;
+  }
+  
+  /* Label font küçült */
+  label {
+    font-size: 12px !important;
+  }
+}
+
+/* Dark mode styles */
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background-color: #111827;
+  color: #f3f4f6;
+}
+
+.dark .bg-white {
+  background-color: #1f2937 !important;
+}
+
+.dark .bg-gray-50 {
+  background-color: #111827 !important;
+}
+
+.dark .text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark .text-gray-700 {
+  color: #d1d5db !important;
+}
+
+.dark .text-gray-600 {
+  color: #9ca3af !important;
+}
+
+.dark .border-gray-200 {
+  border-color: #374151 !important;
+}
+
+.dark .border-gray-300 {
+  border-color: #4b5563 !important;
+}
+
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+  color: #f3f4f6 !important;
+}
+
+.dark input::placeholder,
+.dark select::placeholder,
+.dark textarea::placeholder {
+  color: #6b7280 !important;
+}
+
+/* Force dark mode for all form labels and text */
+html.dark label,
+html.dark .text-gray-700,
+html.dark .text-gray-600,
+html.dark .text-gray-500 {
+  color: #d1d5db !important;
+}
+
+html.dark .text-gray-800,
+html.dark .text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+/* Premium Card System - soft-card form sections (gradient yok, minimal) */
+.soft-card {
+  background-color: white;
+  border: 1px solid rgba(229, 231, 235, 0.6);
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  transition: all 0.2s;
+}
+.soft-card:hover {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+html.dark .card,
+html.dark .soft-card {
+  background-color: #111827 !important;
+  border-color: rgba(55, 65, 81, 0.6) !important;
+}
+
+html.dark .card label,
+html.dark .card input,
+html.dark .soft-card label {
+  color: #f3f4f6 !important;
+}
+
+html.dark .card .text-gray-600,
+html.dark .soft-card .text-gray-600 {
+  border-color: #374151 !important;
+  color: #f3f4f6 !important;
+}
+
+html.dark .font-medium {
+  color: #e5e7eb !important;
+}
+
+html.dark .bg-gray-50 {
+  background-color: #111827 !important;
+}
+
+html.dark .bg-blue-50 {
+  background-color: #1e3a8a !important;
+}
+
+html.dark .border-blue-200 {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+}
+
+html.dark .bg-gray-100 {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+}
+
+html.dark table {
+  background-color: #1f2937 !important;
+}
+
+html.dark table td {
+  border-color: #374151 !important;
+  color: #f3f4f6 !important;
+}
+
+html.dark table th {
+  background-color: #1f2937 !important;
+}
+
+html.dark table tr:hover {
+  background-color: #374151 !important;
+}
+
+html.dark .card,
+html.dark .bg-white,
+html.dark .border {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+}
+
+html.dark button {
+  border-color: #374151 !important;
+}
+
+html.dark button:hover {
+  background-color: #374151 !important;
+  color: #f3f4f6 !important;
+}
+
+html.dark .text-gray-500 {
+  background-color: #111827 !important;
+  color: #f3f4f6 !important;
+}
+
+html.dark ::-webkit-scrollbar {
+  background-color: #111827 !important;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background-color: #374151 !important;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: #4b5563 !important;
+}
+
+html.dark input,
+html.dark textarea,
+html.dark select {
+  color: #f3f4f6 !important;
+  border-color: #374151 !important;
+}
+
+html.dark ::placeholder {
+  color: #6b7280 !important;
+}
+
+html.dark hr {
+  border-color: #374151 !important;
+}
+
+html.dark .text-gray-700,
+html.dark .text-gray-600,
+html.dark .text-gray-500 {
+  color: #f3f4f6 !important;
+  border-color: #374151 !important;
+}
+
+html.dark a:not(.bg-blue-600) {
+  color: #60a5fa !important;
+}
+
+html.dark a:hover {
+  color: #93c5fd !important;
+}
+
+/* ========================================
+   PRINT CSS - MİNİMAL (1cm kenarlık)
+   ======================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm; /* 1cm = 10mm */
+  }
+
+  /* Her şeyi gizle */
+  body > *:not(#print-root) {
+    display: none !important;
+  }
+
+  /* Sadece print-root göster */
+  #print-root {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Sidebar, header, footer, admin panel - kesinlikle gizle */
+  aside, nav, header, footer,
+  .ant-layout-sider, .ant-layout-header, .ant-layout-footer,
+  [class*="sidebar"], [class*="Sidebar"],
+  [class*="admin"], [class*="Admin"],
+  [class*="panel"], [class*="Panel"],
+  [id*="admin"], [id*="panel"] {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Butonları gizle */
+  button, [class*="Button"] {
+    display: none !important;
+  }
+
+  /* Dark mode iptal */
+  .dark, .dark * {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* Page Title Styles */
+.page-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  min-width: 0; /* truncate için gerekli */
+  overflow: hidden; /* truncate için gerekli */
+}
+
+.page-icon {
+  font-size: 22px;
+  opacity: 0.8;
+  flex-shrink: 0; /* İkonun küçülmemesi için */
+}
+
+/* Sidebar Active Item Styles */
+.sidebar-item.active {
+  background: rgba(0, 0, 0, 0.08);
+  border-left: 4px solid var(--pageColor);
+  font-weight: 600;
+}
+
+.sidebar-item.active:hover {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+/* Number input spinner always visible */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* GLOBAL DARK MODE FIX - Tüm sayfalarda beyaz zemin sorunu çözümü */
+html.dark, html.dark body {
+  background-color: #111827 !important;
+  color: #e5e7eb;
+}
+
+html.dark .min-h-screen {
+  background-color: #111827 !important;
+}
+
+html.dark main,
+html.dark section,
+html.dark div {
+  background-color: transparent;
+}
+
+html.dark [style*="background"] {
+  background-color: transparent !important;
+}
+
+html.dark #kidem-print {
+  background-color: #111827 !important;
+}
+
+html.dark .bg-white {
+  background-color: #1f2937 !important;
+}
+
+.dark * {
+  background-color: inherit;
+}
