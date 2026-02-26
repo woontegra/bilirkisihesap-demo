@@ -3153,9 +3153,9 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
             className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 mx-4 max-w-md text-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 id="demo-modal-title" className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
-              DENEME SÜRÜMÜ
-            </h2>
+            <div id="demo-modal-title" className="flex justify-center mb-4">
+              <img src="/login.png" alt="Logo" className="h-16 object-contain" />
+            </div>
             <p className="text-gray-600 dark:text-gray-300 mb-6 whitespace-pre-line">
               Bu deneme sürümüdür.
               {"\n"}40'tan fazla tüm hesaplamalara erişim için lisans gereklidir.
