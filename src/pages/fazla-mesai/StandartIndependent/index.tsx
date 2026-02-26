@@ -2295,6 +2295,9 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
           </span>
         </div>
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 select-none relative z-[2]" style={{ paddingBottom: 'max(6rem, calc(5rem + env(safe-area-inset-bottom, 0px)))' }}>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6">
+            Standart Fazla Mesai Hesaplama
+          </h1>
           <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row sm:justify-end gap-2">
             {videoLink && (
               <Button
