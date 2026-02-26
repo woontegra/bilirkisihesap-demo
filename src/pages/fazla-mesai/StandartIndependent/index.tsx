@@ -2276,6 +2276,17 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
       noBackgroundColor={true}
     >
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative">
+        {/* Header / Navbar - Logo + Deneme Sürümü */}
+        <header className="sticky top-0 z-40 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 py-2 flex items-center justify-between gap-3">
+            <a href="/" className="flex items-center min-w-0">
+              <img src="/logo.png" alt="Bilirkisi Hesaplama Araçları" className="h-12 sm:h-14 w-auto object-contain flex-shrink-0" />
+            </a>
+            <span className="flex-shrink-0 px-3 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200 border border-amber-200 dark:border-amber-700">
+              Deneme Sürümü
+            </span>
+          </div>
+        </header>
         {/* DEMO: Full-page watermark - fixed center, rotated, above content (pointer-events: none so clicks pass through) */}
         <div
           className="fixed pointer-events-none"
@@ -2294,6 +2305,16 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
             DENEME SÜRÜMÜ
           </span>
         </div>
+        {/* Sol / Sağ reklam alanları - Formu daraltmadan sayfa kenarlarında sabit */}
+        {/* Önerilen görsel boyutları: 160×400 px (lg) veya 192×400 px (xl). Skyscraper için 160×600 px de uygun. */}
+        {/* Sol/sağ banner: 192px genişlik, görsel 192×1400 px önerilir. Çerçeve/arka plan yok, sadece görsel. */}
+        <aside className="hidden lg:flex fixed left-2 top-24 z-30 overflow-hidden flex-col items-center rounded-lg" style={{ width: 192, bottom: 'calc(5rem + env(safe-area-inset-bottom, 0px))' }} aria-label="Reklam alanı">
+          <img src="/deneme%20test.png" alt="Deneme görsel" className="w-full h-full min-h-0 object-contain object-top rounded-lg" />
+        </aside>
+        <aside className="hidden lg:flex fixed top-24 z-30 overflow-hidden flex-col items-center rounded-lg" style={{ width: 192, right: 'max(1.25rem, calc(1.25rem + env(safe-area-inset-right)))', bottom: 'calc(5rem + env(safe-area-inset-bottom, 0px))' }} aria-label="Reklam alanı">
+          <img src="/sagbanner.png" alt="Sağ banner" className="w-full h-full min-h-0 object-contain object-top rounded-lg" />
+        </aside>
+
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 select-none relative z-[2]" style={{ paddingBottom: 'max(6rem, calc(5rem + env(safe-area-inset-bottom, 0px)))' }}>
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6">
             Standart Fazla Mesai Hesaplama
