@@ -2294,8 +2294,8 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
             DENEME SÜRÜMÜ
           </span>
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 select-none relative z-[2]" style={{ paddingBottom: '80px' }}>
-          <div className="mb-8 flex justify-end">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 select-none relative z-[2]" style={{ paddingBottom: 'max(6rem, calc(5rem + env(safe-area-inset-bottom, 0px)))' }}>
+          <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row sm:justify-end gap-2">
             {videoLink && (
               <Button
                 onClick={() => window.open(videoLink, "_blank")}
@@ -2308,8 +2308,8 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
               </Button>
             )}
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl dark:shadow-gray-900/50 border border-gray-100 dark:border-gray-700 overflow-hidden">
-            <div className="p-6 md:p-8 space-y-4">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl shadow-xl dark:shadow-gray-900/50 border border-gray-100 dark:border-gray-700 overflow-hidden">
+            <div className="p-4 sm:p-6 md:p-8 space-y-4">
         <div className="w-full space-y-4">
         {/* Ana Form - Tam Sayfa */}
         <div className="space-y-4">
@@ -2511,14 +2511,14 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
           </div>
 
           {/* HESAPLAMA KURALLARI - ZARİF BUTONLAR */}
-          <div className="mt-5 mb-4 flex flex-wrap items-center gap-3 text-sm">
+          <div className="mt-5 mb-4 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 text-sm">
             {/* 270 SAAT DÜŞÜM - DROPDOWN BUTON */}
-            <div className="relative">
+            <div className="relative w-full sm:w-auto sm:min-w-0">
               {/* Ana Buton */}
               <button
                 type="button"
                 onClick={() => setShow270Dropdown(!show270Dropdown)}
-                className={`relative z-10 inline-flex items-center gap-2.5 px-4 py-2 text-sm font-medium rounded-full border transition-all duration-200 ${
+                className={`relative z-10 w-full sm:w-auto inline-flex items-center justify-center sm:justify-start gap-2.5 px-4 py-2.5 sm:py-2 text-sm font-medium rounded-full border transition-all duration-200 ${
                   mode270 !== "none"
                     ? "bg-gradient-to-r from-purple-500 to-indigo-600 text-white border-transparent shadow-md hover:from-purple-600 hover:to-indigo-700"
                     : "bg-white text-gray-700 border-gray-300 hover:border-purple-400 hover:bg-purple-50 hover:text-purple-600"
@@ -2546,7 +2546,7 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
 
               {/* Dropdown Menü */}
               {show270Dropdown && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-gray-100 rounded-xl shadow-lg z-10 overflow-hidden animate-in fade-in duration-200">
+                <div className="absolute top-full left-0 right-0 sm:right-auto sm:w-64 mt-2 bg-white border border-gray-100 rounded-xl shadow-lg z-10 overflow-hidden animate-in fade-in duration-200">
                   {/* Kapalı */}
                   <button
                     type="button"
@@ -2654,7 +2654,7 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
                   setShowZamanaModal(true);
                 }
               }}
-              className={`inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full border transition-all duration-200 ${
+              className={`w-full sm:w-auto inline-flex items-center justify-center sm:justify-start gap-2 px-4 py-2.5 sm:py-2 text-sm font-medium rounded-full border transition-all duration-200 ${
                 zamanasimiBaslangic
                   ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white border-transparent shadow-md hover:from-blue-600 hover:to-blue-700"
                   : "bg-white text-gray-700 border-gray-300 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-600"
@@ -2684,7 +2684,7 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
                   setShowKatsayiModal(true);
                 }
               }}
-              className={`inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full border transition-all duration-200 ${
+              className={`w-full sm:w-auto inline-flex items-center justify-center sm:justify-start gap-2 px-4 py-2.5 sm:py-2 text-sm font-medium rounded-full border transition-all duration-200 ${
                 hasCustomKatsayi
                   ? "bg-gradient-to-r from-green-500 to-green-600 text-white border-transparent shadow-md hover:from-green-600 hover:to-green-700"
                   : "bg-white text-gray-700 border-gray-300 hover:border-green-400 hover:bg-green-50 hover:text-green-600"
@@ -2736,8 +2736,8 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
               </div>
             )}
 
-            <div className="mt-2 mb-2 overflow-x-auto w-full select-none" style={{ maxWidth: '100%' }}>
-              <table className="w-full text-xs border-[0.5px] border-gray-300" style={{ borderCollapse: 'collapse', tableLayout: 'fixed', width: '100%', lineHeight: '1.2' }}>
+            <div className="fazla-mesai-table-wrapper mt-2 mb-2 overflow-x-auto w-full select-none -mx-1 sm:mx-0 px-1 sm:px-0" style={{ maxWidth: '100%', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'thin' }}>
+              <table className="w-full text-[11px] sm:text-xs border-[0.5px] border-gray-300 min-w-[680px]" style={{ borderCollapse: 'collapse', tableLayout: 'fixed', width: '100%', lineHeight: '1.2' }}>
                 <colgroup>
                   <col style={{ width: '22%' }} />
                   <col style={{ width: '5%' }} />
@@ -2754,8 +2754,8 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
                     <th className="border-[0.5px] border-gray-300 px-1 py-0.5 text-left font-semibold text-xs leading-tight">Tarih Aralığı</th>
                     <th className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right font-semibold text-xs leading-tight">Hafta</th>
                     <th className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right font-semibold text-xs leading-tight">Ücret</th>
-                    <th className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right font-semibold text-xs leading-tight">Kat Sayı <span className="text-gray-500" title="Katsayı varsayılan 1 olarak alınır.">ℹ️</span></th>
-                    <th className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right font-semibold text-xs leading-tight">FM Saati <span className="text-gray-500" title="Hesaplanan haftalık fazla mesai saati; gerekirse satır bazlı düzenleyebilirsiniz.">ℹ️</span></th>
+                    <th className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right font-semibold text-xs leading-tight">Kat Sayı <span className="hidden sm:inline text-gray-500 cursor-help" title="Katsayı varsayılan 1 olarak alınır.">ℹ️</span></th>
+                    <th className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right font-semibold text-xs leading-tight">FM Saati <span className="hidden sm:inline text-gray-500 cursor-help" title="Hesaplanan haftalık fazla mesai saati; gerekirse satır bazlı düzenleyebilirsiniz.">ℹ️</span></th>
                     <th className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right font-semibold text-xs leading-tight">225</th>
                     <th className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right font-semibold text-xs leading-tight">1,5</th>
                     <th className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right font-semibold text-xs leading-tight">Fazla Mesai</th>
@@ -2773,12 +2773,12 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
                         <input
                           value="0,00"
                           readOnly
-                          className="w-full max-w-20 text-right rounded border-[0.5px] border-gray-300 px-1 py-0.5 text-xs bg-gray-50 leading-tight"
+                          className="w-full max-w-20 text-right rounded border-[0.5px] border-gray-300 px-1 py-0.5 text-[11px] sm:text-xs bg-gray-50 leading-tight"
                         />
                       </td>
                       <td className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right leading-tight">225</td>
                       <td className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right leading-tight">1,5</td>
-                      <td className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right font-medium text-xs leading-tight">{fmt(0)}</td>
+                      <td className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right font-medium text-[11px] sm:text-xs leading-tight">{fmt(0)}</td>
                       <td className="border-0 bg-transparent w-8"></td>
                     </tr>
                   ) : (
@@ -2806,7 +2806,7 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
                                 }
                               }));
                             }}
-                            className="w-24 text-xs rounded border-[0.5px] border-gray-300 px-1 py-0.5 leading-tight"
+                            className="w-24 text-[11px] sm:text-xs rounded border-[0.5px] border-gray-300 px-1 py-0.5 leading-tight"
                           />
                           <span>–</span>
                           <input
@@ -2824,7 +2824,7 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
                                 }
                               }));
                             }}
-                            className="w-24 text-xs rounded border-[0.5px] border-gray-300 px-1 py-0.5 leading-tight"
+                            className="w-24 text-[11px] sm:text-xs rounded border-[0.5px] border-gray-300 px-1 py-0.5 leading-tight"
                           />
                         </div>
                       </td>
@@ -2843,7 +2843,7 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
                               }
                             }));
                           }}
-                          className="w-14 text-right text-xs rounded border-[0.5px] border-gray-300 px-1 py-0.5 leading-tight"
+                          className="w-14 text-right text-[11px] sm:text-xs rounded border-[0.5px] border-gray-300 px-1 py-0.5 leading-tight"
                         />
                       </td>
                       <td className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right leading-tight">
@@ -2867,10 +2867,10 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
                             const au = normalizedAsgari.find(a => normalizeLocalDate(r.startISO) >= normalizeLocalDate(a.start) && normalizeLocalDate(r.startISO) <= normalizeLocalDate(a.end)) || normalizedAsgari[normalizedAsgari.length - 1];
                             return fmt(au.brut);
                           })()}
-                          className="w-full max-w-32 text-right rounded border-[0.5px] border-gray-300 px-1 py-0.5 text-xs leading-tight"
+                          className="w-full max-w-32 text-right rounded border-[0.5px] border-gray-300 px-1 py-0.5 text-[11px] sm:text-xs leading-tight"
                         />
                       </td>
-                      <td className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right text-xs leading-tight">{Number(r.katsayi.toFixed(4)).toLocaleString('tr-TR', { minimumFractionDigits: 4, maximumFractionDigits: 4 })}</td>
+                      <td className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right text-[11px] sm:text-xs leading-tight">{Number(r.katsayi.toFixed(4)).toLocaleString('tr-TR', { minimumFractionDigits: 4, maximumFractionDigits: 4 })}</td>
                       <td className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right leading-tight">
                         <input
                           type="text"
@@ -2886,12 +2886,12 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
                               }
                             }));
                           }}
-                          className="w-14 text-right text-xs rounded border-[0.5px] border-gray-200 px-1 py-0.5 leading-tight"
+                          className="w-14 text-right text-[11px] sm:text-xs rounded border-[0.5px] border-gray-200 px-1 py-0.5 leading-tight"
                         />
                       </td>
                       <td className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right leading-tight">225</td>
                       <td className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right leading-tight">1,5</td>
-                      <td className="border border-gray-300 px-2 py-1.5 text-right font-medium">{fmt(r.fm)}</td>
+                      <td className="border border-gray-300 px-2 py-1.5 text-right font-medium text-[11px] sm:text-xs">{fmt(r.fm)}</td>
                       <td className="border-0 bg-transparent w-10 p-0">
                         {hoveredRow === i && (
                           <div className="flex items-center gap-1 justify-end pr-1">
@@ -2923,14 +2923,14 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
                   )}
                   {rows.length > 0 && (
                     <tr style={{ borderTop: '1px solid #999' }} className="bg-[#f1f3f5]">
-                      <td className="border-[0.5px] border-gray-300 px-1 py-0.5 font-semibold text-xs leading-tight">Toplam Fazla Mesai:</td>
+                      <td className="border-[0.5px] border-gray-300 px-1 py-0.5 font-semibold text-[11px] sm:text-xs leading-tight">Toplam Fazla Mesai:</td>
                       <td className="border-[0.5px] border-gray-300 px-1 py-0.5" />
                       <td className="border-[0.5px] border-gray-300 px-1 py-0.5" />
                       <td className="border-[0.5px] border-gray-300 px-1 py-0.5" />
                       <td className="border-[0.5px] border-gray-300 px-1 py-0.5" />
                       <td className="border-[0.5px] border-gray-300 px-1 py-0.5" />
                       <td className="border-[0.5px] border-gray-300 px-1 py-0.5" />
-                      <td className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right font-semibold text-xs leading-tight">{fmt(totalBrut)}</td>
+                      <td className="border-[0.5px] border-gray-300 px-1 py-0.5 text-right font-semibold text-[11px] sm:text-xs leading-tight">{fmt(totalBrut)}</td>
                       <td className="border-0 bg-transparent w-8"></td>
                     </tr>
                   )}
@@ -3143,53 +3143,60 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
       {/* DEMO: Centered modal when user clicks Önizleme - no real report */}
       {showDemoModal && createPortal(
         <div
-          className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/40"
+          className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 backdrop-blur-sm p-3 sm:p-4"
+          style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)' }}
           role="dialog"
           aria-modal="true"
           aria-labelledby="demo-modal-title"
           onClick={() => setShowDemoModal(false)}
         >
           <div
-            className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 mx-4 max-w-md text-center"
+            className="relative w-full max-w-md max-h-[90vh] overflow-y-auto overflow-x-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] ring-1 ring-gray-200/80 dark:ring-gray-700/50 text-center animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
-            <div id="demo-modal-title" className="flex justify-center mb-4">
-              <img src="/login.png" alt="Logo" className="h-16 object-contain" />
-            </div>
-            <p className="text-gray-600 dark:text-gray-300 mb-6 whitespace-pre-line">
-              Bu deneme sürümüdür.
-              {"\n"}40'tan fazla tüm hesaplamalara erişim için lisans gereklidir.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              <Button
-                type="button"
-                onClick={async () => {
-                  await fetch("http://localhost:4000/demo-track", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ event: "demo_click" }),
-                  }).catch(() => {});
-                  window.open("https://bilirkisihesap.com", "_blank");
-                }}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium"
-              >
-                Demo Talep Et
-              </Button>
-              <Button
-                type="button"
-                onClick={async () => {
-                  await fetch("http://localhost:4000/demo-track", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ event: "subscribe_click" }),
-                  }).catch(() => {});
-                  window.open("https://bilirkisihesap.com/satin-al", "_blank");
-                }}
-                variant="outline"
-                className="border-2 border-purple-600 text-purple-600 hover:bg-purple-50 dark:border-purple-400 dark:text-purple-400 dark:hover:bg-purple-900/30 px-4 py-2 rounded-lg font-medium"
-              >
-                Abone Ol
-              </Button>
+            {/* Üst dekoratif gradient */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-600" />
+            <div className="p-5 sm:p-8">
+              <div id="demo-modal-title" className="flex justify-center mb-4 sm:mb-6">
+                <div className="rounded-xl bg-gray-50 dark:bg-gray-900/50 p-3 sm:p-4 ring-1 ring-gray-100 dark:ring-gray-700/50">
+                  <img src="/login.png" alt="Bilirkisi Logo" className="h-16 sm:h-20 w-auto object-contain max-w-[180px] sm:max-w-[200px]" />
+                </div>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-[15px] leading-relaxed mb-6 sm:mb-8 whitespace-pre-line">
+                Bu deneme sürümüdür.
+                {"\n"}40'tan fazla tüm hesaplamalara erişim için lisans gereklidir.
+              </p>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pb-1">
+                <Button
+                  type="button"
+                  onClick={async () => {
+                    await fetch("http://localhost:4000/demo-track", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ event: "demo_click" }),
+                    }).catch(() => {});
+                    window.open("https://bilirkisihesap.com", "_blank");
+                  }}
+                  className="order-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-200"
+                >
+                  Demo Talep Et
+                </Button>
+                <Button
+                  type="button"
+                  onClick={async () => {
+                    await fetch("http://localhost:4000/demo-track", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ event: "subscribe_click" }),
+                    }).catch(() => {});
+                    window.open("https://bilirkisihesap.com/satin-al", "_blank");
+                  }}
+                  variant="outline"
+                  className="order-2 border-2 border-purple-500/60 text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 hover:border-purple-500 px-6 py-3 rounded-xl font-semibold transition-all duration-200"
+                >
+                  Abone Ol
+                </Button>
+              </div>
             </div>
           </div>
         </div>,
@@ -3238,7 +3245,7 @@ export default function FazlaMesaiAlacagiPage({ titleOverride }: Props) {
     {KaydetModal ? <KaydetModal /> : null}
       
       {/* Toast Notifications - Modern & Zarif */}
-      <div className="fixed top-6 right-6 z-[60] space-y-3 pointer-events-none max-w-md">
+      <div className="fixed top-4 right-3 left-3 sm:left-auto sm:right-6 sm:top-6 z-[60] space-y-3 pointer-events-none max-w-md mx-auto sm:mx-0" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
         {toasts.map((toast) => {
           const isSuccess = toast.variant === "success";
           const isError = toast.variant === "error";

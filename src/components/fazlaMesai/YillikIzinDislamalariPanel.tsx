@@ -123,7 +123,7 @@ export function YillikIzinDislamalariPanel({
       <button
         type="button"
         onClick={() => setIsOpen((o) => !o)}
-        className="w-full flex items-center justify-between px-4 py-3 text-left text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
+        className="w-full flex items-center justify-between px-3 sm:px-4 py-3 text-left text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors min-h-[48px]"
       >
         <span>Yıllık izin / Çalışılmayan raporlu günler dışlanabilir.</span>
         <span className="text-gray-500" aria-hidden>
@@ -133,12 +133,12 @@ export function YillikIzinDislamalariPanel({
 
       {/* İçerik */}
       {isOpen && (
-        <div className="px-4 pb-4 pt-0 space-y-3 border-t border-gray-100">
-          <div className="flex items-center justify-between pt-3">
-            <div className="text-xs text-gray-600">
+        <div className="px-3 sm:px-4 pb-4 pt-0 space-y-3 border-t border-gray-100">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-3">
+            <div className="text-xs text-gray-600 flex-shrink-0">
               Dışlama ekleyin; düşüm, girdiğiniz gün sayısına göre yapılır.
             </div>
-            <div className="flex gap-2 items-center flex-wrap">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 items-stretch sm:items-center">
               <button
                 type="button"
                 onClick={() => {
@@ -146,7 +146,7 @@ export function YillikIzinDislamalariPanel({
                   setShowExclusionSaveModal(true);
                 }}
                 disabled={exclusions.length === 0}
-                className={btnOval}
+                className={`${btnOval} min-h-[44px] sm:min-h-0 w-full sm:w-auto justify-center`}
                 title="Girdiğiniz dışlama günlerini bir isim vererek kaydedin."
               >
                 Kaydet ⓘ
@@ -158,7 +158,7 @@ export function YillikIzinDislamalariPanel({
                   setSavedExclusionSets(sets);
                   setShowExclusionLoadModal(true);
                 }}
-                className={btnOval}
+                className={`${btnOval} min-h-[44px] sm:min-h-0 w-full sm:w-auto justify-center`}
                 title="Daha önce kaydettiğiniz dışlama günlerini yükleyin."
               >
                 İçe Aktar ⓘ
@@ -167,7 +167,7 @@ export function YillikIzinDislamalariPanel({
                 type="button"
                 onClick={handleClearAll}
                 disabled={exclusions.length === 0}
-                className={btnOvalDestructive}
+                className={`${btnOvalDestructive} min-h-[44px] sm:min-h-0 w-full sm:w-auto justify-center`}
               >
                 Tümünü Sil
               </button>
@@ -314,30 +314,30 @@ onClick={() => {
             )}
 
           {/* Form: Başlangıç, Bitiş, Gün, Ekle */}
-          <div className="grid grid-cols-12 gap-2 items-end">
+          <div className="grid grid-cols-2 sm:grid-cols-12 gap-2 items-end">
             <input
               type="date"
-              className={`col-span-4 ${inputClass}`}
+              className={`col-span-2 sm:col-span-4 ${inputClass} min-h-[44px] sm:min-h-0`}
               placeholder="Başlangıç"
               value={yilStart}
               onChange={(e) => setYilStart(e.target.value)}
             />
             <input
               type="date"
-              className={`col-span-4 ${inputClass}`}
+              className={`col-span-2 sm:col-span-4 ${inputClass} min-h-[44px] sm:min-h-0`}
               placeholder="Bitiş"
               value={yilEnd}
               onChange={(e) => setYilEnd(e.target.value)}
             />
             <input
-              className={`col-span-3 ${inputClass}`}
+              className={`col-span-1 sm:col-span-3 ${inputClass} min-h-[44px] sm:min-h-0`}
               placeholder="Gün"
               value={yilDays}
               onChange={(e) => setYilDays(e.target.value)}
             />
             <button
               type="button"
-              className="col-span-1 px-4 py-2.5 rounded-full font-medium text-sm text-blue-600 border border-dashed border-gray-200 hover:border-blue-400 transition-all"
+              className="col-span-1 px-4 py-3 sm:py-2.5 rounded-full font-medium text-sm text-blue-600 border border-dashed border-gray-200 hover:border-blue-400 transition-all min-h-[44px] sm:min-h-0 flex items-center justify-center"
               onClick={handleAdd}
             >
               + Ekle
@@ -346,8 +346,8 @@ onClick={() => {
 
           {/* Liste */}
           {exclusions.length > 0 && (
-            <div className="mt-2">
-              <div className="grid grid-cols-12 text-xs text-gray-600 font-medium px-2">
+            <div className="mt-2 overflow-x-auto -mx-1 sm:mx-0">
+              <div className="grid grid-cols-12 text-xs text-gray-600 font-medium px-2 min-w-[320px]">
                 <div className="col-span-3">Tür</div>
                 <div className="col-span-3">Başlangıç</div>
                 <div className="col-span-3">Bitiş</div>
@@ -357,14 +357,14 @@ onClick={() => {
               {exclusions.map((ex, idx) => (
                 <div
                   key={ex.id}
-                  className="grid grid-cols-12 gap-2 items-center mt-2"
+                  className="grid grid-cols-12 gap-2 items-center mt-2 min-w-[320px]"
                 >
                   <select
                     value={ex.type}
                     onChange={(e) =>
                       handleTypeChange(idx, e.target.value as ExclusionType)
                     }
-                    className={`col-span-3 ${inputClassCompact}`}
+                    className={`col-span-3 ${inputClassCompact} min-h-[40px] sm:min-h-0`}
                   >
                     {EXCLUSION_TYPES.map((t) => (
                       <option key={t} value={t}>
@@ -381,7 +381,7 @@ onClick={() => {
                           i === idx ? { ...r, start: e.target.value } : r
                         )
                       )}
-                    className={`col-span-3 ${inputClassCompact}`}
+                    className={`col-span-3 ${inputClassCompact} min-h-[40px] sm:min-h-0`}
                   />
                   <input
                     type="date"
@@ -392,7 +392,7 @@ onClick={() => {
                           i === idx ? { ...r, end: e.target.value } : r
                         )
                       )}
-                    className={`col-span-3 ${inputClassCompact}`}
+                    className={`col-span-3 ${inputClassCompact} min-h-[40px] sm:min-h-0`}
                   />
                   <input
                     value={String(ex.days)}
@@ -404,14 +404,14 @@ onClick={() => {
                             : r
                         )
                       )}
-                    className={`col-span-2 ${inputClassCompact}`}
+                    className={`col-span-2 ${inputClassCompact} min-h-[40px] sm:min-h-0`}
                   />
                   <button
                     type="button"
                     onClick={() =>
                       setExclusions((arr) => arr.filter((_, i) => i !== idx))
                     }
-                    className="col-span-1 text-sm text-red-600 hover:underline"
+                    className="col-span-1 text-sm text-red-600 hover:underline min-h-[40px] sm:min-h-0 flex items-center justify-center"
                   >
                     Sil
                   </button>

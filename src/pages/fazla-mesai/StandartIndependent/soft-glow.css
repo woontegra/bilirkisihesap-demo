@@ -52,3 +52,12 @@ input, select {
   padding: 20px !important;
 }
 
+/* Mobil: Tablo sütun genişlikleri - Tarih geniş, Kat Sayı geniş, Fazla Mesai dar */
+@media (max-width: 639px) {
+  .fazla-mesai-table-wrapper table col:nth-child(1) { width: 25% !important; }  /* Tarih Aralığı: 22→25 */
+  .fazla-mesai-table-wrapper table col:nth-child(3) { width: 10% !important; }  /* Ücret: 11→10 */
+  .fazla-mesai-table-wrapper table col:nth-child(4) { width: 8% !important; }   /* Kat Sayı: 6→8 */
+  .fazla-mesai-table-wrapper table col:nth-child(5) { width: 8% !important; }   /* FM Saati: 9→8 */
+  .fazla-mesai-table-wrapper table col:nth-child(8) { width: 13% !important; }  /* Fazla Mesai: 16→13 */
+}
+

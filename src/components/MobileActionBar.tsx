@@ -28,7 +28,7 @@ export default function MobileActionBar({
   const hasBoth = !!previewButton && !!onSave;
 
   return (
-    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-t border-gray-200/60 dark:border-gray-800/60 px-4 py-3">
+    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-t border-gray-200/60 dark:border-gray-800/60 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))]">
       <div className={`grid gap-3 ${hasBoth ? "grid-cols-2" : "grid-cols-1"}`}>
         {previewButton && (
           <div className={hasBoth ? "" : "w-full"}>
